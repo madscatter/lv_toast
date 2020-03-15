@@ -1,0 +1,12 @@
+<div id="toasts" phx-update="replace" >
+  <%= for {key, %Toast{comment: comment, hide: hidden}} <- @toasts do %>
+    <div
+      class="live-view-toast <%= if hidden do "hidden" end %>"
+      id="<%= key %>"
+      phx-click="toast_click-<%= key %>"
+      phx-target="#toasts"
+    >
+      <%= comment %>
+    </div>
+  <% end %>
+</div>

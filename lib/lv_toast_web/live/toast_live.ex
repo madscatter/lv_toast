@@ -10,13 +10,15 @@ defmodule LvToastWeb.ToastLive do
   end
 
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    comment = "Hello! I'm a LiveView Toast."
+    duration = 5
+    {:ok, assign(socket, comment: comment, duration: duration)}
   end
 
   def handle_event("add_toast", %{"make_toast" => %{"comment" => comment, "duration"=> duration}}, socket) do
     {val, _} = duration |> Integer.parse()
     send_update StackableToast, %ToastMsg{msg: :add_toast, comment: comment, duration: val*1000}
-    {:noreply, socket}
+    {:noreply, assign(socket, comment: comment, duration: val)}
   end
 
   def handle_info(assigns = %ToastMsg{}, socket) do

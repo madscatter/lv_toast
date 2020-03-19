@@ -5,9 +5,9 @@
 <div>
 <%= f = form_for :make_toast,"#", [phx_submit: :add_toast] %>
   <%= label f, "comment" %>
-  <%= text_input f, :comment, [value: "Hello! I'm a LiveView Toast.", phx_hook: "comment_input"] %>
+  <%= text_input f, :comment, [value: @comment, phx_hook: "comment_input"] %>
   <%= label f, "duration(seconds)" %>
-  <%= select f, :duration, 3..10, selected: 5 %>
+  <%= select f, :duration, 3..10, selected: @duration %>
 
   <%= submit "add toast" %>
 </form>
